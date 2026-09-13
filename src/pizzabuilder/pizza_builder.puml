@@ -1,0 +1,64 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Pizza {
+  - dough : String
+  - sauce : String
+  - cheese : String
+  - toppings : List<String>
+  - size : String
+  + Pizza(...)
+  + toString() : String
+}
+
+interface PizzaBuilder {
+  + setDough(dough : String) : PizzaBuilder
+  + setSauce(sauce : String) : PizzaBuilder
+  + setCheese(cheese : String) : PizzaBuilder
+  + addTopping(topping : String) : PizzaBuilder
+  + setSize(size : String) : PizzaBuilder
+  + build() : Pizza
+}
+
+abstract class BasePizzaBuilder {
+  # dough : String
+  # sauce : String
+  # cheese : String
+  # toppings : List<String>
+  # size : String
+  + setDough(dough : String) : PizzaBuilder
+  + setSauce(sauce : String) : PizzaBuilder
+  + setCheese(cheese : String) : PizzaBuilder
+  + addTopping(topping : String) : PizzaBuilder
+  + setSize(size : String) : PizzaBuilder
+  + build() : Pizza
+  # validateTypeSpecificRules() : void
+}
+
+class PepperoniPizzaBuilder {
+  # validateTypeSpecificRules() : void
+}
+
+class VegetarianPizzaBuilder {
+  # validateTypeSpecificRules() : void
+}
+
+class PizzaDirector {
+  + makePepperoni(builder : PizzaBuilder) : Pizza
+  + makeVeggie(builder : PizzaBuilder) : Pizza
+}
+
+class Main {
+  + main(args : String[]) : void
+}
+
+PizzaBuilder <|.. BasePizzaBuilder
+BasePizzaBuilder <|-- PepperoniPizzaBuilder
+BasePizzaBuilder <|-- VegetarianPizzaBuilder
+PizzaBuilder ..> Pizza : builds
+PizzaDirector ..> PizzaBuilder : uses
+PizzaDirector ..> Pizza : creates
+Main ..> PizzaDirector : uses
+Main ..> PepperoniPizzaBuilder : creates
+Main ..> VegetarianPizzaBuilder : creates
+@enduml

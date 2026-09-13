@@ -6,5 +6,5 @@ public interface PizzaBuilder {
     PizzaBuilder setCheese(String cheese);
     PizzaBuilder addTopping(String topping);
     PizzaBuilder setSize(String size);
-    pizza build();
+    Pizza build();
 }

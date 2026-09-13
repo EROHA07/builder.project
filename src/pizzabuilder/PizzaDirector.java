@@ -2,7 +2,7 @@ package pizzabuilder;
 
 public class PizzaDirector {
 
-    public pizza makePepperoni(PizzaBuilder builder) {
+    public Pizza makePepperoni(PizzaBuilder builder) {
         return builder
                 .setDough("Thin Crust")
                 .setSauce("Tomato Sauce")
@@ -13,7 +13,7 @@ public class PizzaDirector {
                 .build();
     }
 
-    public pizza makeVeggie(PizzaBuilder builder) {
+    public Pizza makeVeggie(PizzaBuilder builder) {
         return builder
                 .setDough("Whole Wheat")
                 .setSauce("Garlic Sauce")
